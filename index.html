@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="description" content="Vector : Vector is an on-host performance monitoring framework which exposes hand picked high resolution metrics to every engineer’s browser.">
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>Vector</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/Netflix/vector">View on GitHub</a>
+
+          <h1 id="project_title">Vector</h1>
+          <h2 id="project_tagline">Vector is an on-host performance monitoring framework which exposes hand picked high resolution metrics to every engineer’s browser.</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/Netflix/vector/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/Netflix/vector/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h2>
+<a id="getting-started" class="anchor" href="#getting-started" aria-hidden="true"><span class="octicon octicon-link"></span></a>Getting Started</h2>
+
+<p>In order to get started, you should first install <a href="http://pcp.io/">Performance Co-Pilot (PCP)</a> on each host you plan to monitor. PCP will collect the metrics and make them available for Vector.  The pmcd and pmwebd services need to be running on each host, the latter of which needs to expose its tcp/44323 network port.</p>
+
+<p>Optional monitoring agents can also be installed in order to collect specific metrics that are not supported by PCP's system agent.</p>
+
+<p>Once PCP is installed, you should be able to run Vector and connect to the target host.</p>
+
+<h3>
+<a id="performance-co-pilot-pcp" class="anchor" href="#performance-co-pilot-pcp" aria-hidden="true"><span class="octicon octicon-link"></span></a>Performance Co-Pilot (PCP)</h3>
+
+<p>Vector depends on Performance Co-Pilot (PCP) to collect metrics on each host you plan to monitor.</p>
+
+<p>Since Vector depends on version 3.10 or higher, the packages currently available on most Linux distro repositories would not suffice. Until newer versions are available in the repositories, you should be able to install PCP from binary packages made available by the PCP development team on:</p>
+
+<pre><code>ftp.pcp.io
+</code></pre>
+
+<p>Or build it from source. To do so, get the current version of the source code:</p>
+
+<pre><code>$ git clone git://git.pcp.io/pcp
+</code></pre>
+
+<p>Check that prerequisites such as libmicrohttpd headers/libraries and
+pkgconfig are installed.  Then build and install:</p>
+
+<pre><code>$ cd pcp
+$ ./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var
+$ make
+# make install
+</code></pre>
+
+<p>More information on how to install Performance Co-Pilot can be found at:</p>
+
+<p><a href="http://pcp.io/docs/installation.html#src">http://pcp.io/docs/installation.html#src</a></p>
+
+<h3>
+<a id="vector" class="anchor" href="#vector" aria-hidden="true"><span class="octicon octicon-link"></span></a>Vector</h3>
+
+<p>Vector is a static web application that runs inside the client's browser. It can run locally or deployed to any HTTP server available, like Apache or Nginx.</p>
+
+<p>To run in locally, first clone the repo:</p>
+
+<pre><code>$ git clone https://github.com/Netflix/vector.git
+</code></pre>
+
+<p>Make sure you have Bower installed on your system. Bower is a package management system for client-side programming, optimized for the front-end development.</p>
+
+<p><a href="http://bower.io/#getting-started">http://bower.io/#getting-started</a></p>
+
+<p>And install all dependencies:</p>
+
+<pre><code>$ cd vector
+$ bower install
+</code></pre>
+
+<p>You can run Vector with Gulp. Gulp is an automated task runner and includes a development web server with live reload. In order to start Gulp’s web server, first make sure you have Gulp installed on your system:</p>
+
+<p><a href="https://github.com/gulpjs/gulp/blob/master/docs/getting-started.md">https://github.com/gulpjs/gulp/blob/master/docs/getting-started.md</a></p>
+
+<p>Then, install the dependencies and execute the default Gulp task:</p>
+
+<pre><code>$ npm install
+$ gulp
+</code></pre>
+
+<p>You can also run Vector with Python's SimpleHTTPServer:</p>
+
+<pre><code>$ cd vector/app
+$ python -m SimpleHTTPServer 8080
+</code></pre>
+
+<p>Then open Vector on your browser:</p>
+
+<p><a href="http://localhost:8080">http://localhost:8080</a></p>
+
+<p>And enter the hostname from the server you plan on monitoring. That's it!</p>
+
+<h2>
+<a id="issues" class="anchor" href="#issues" aria-hidden="true"><span class="octicon octicon-link"></span></a>Issues</h2>
+
+<p>For bugs, questions and discussions please use the <a href="https://github.com/Netflix/vector/issues">Github Issues</a>.</p>
+
+<h2>
+<a id="license" class="anchor" href="#license" aria-hidden="true"><span class="octicon octicon-link"></span></a>License</h2>
+
+<p>Copyright 2015 Netflix, Inc.</p>
+
+<p>Licensed under the Apache License, Version 2.0 (the “License”); you may not use this file except in compliance with the License. You may obtain a copy of the License at</p>
+
+<p><a href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a></p>
+
+<p>Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an “AS IS” BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.</p>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Vector maintained by <a href="https://github.com/Netflix">Netflix</a></p>
+        <p>Published with <a href="https://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
