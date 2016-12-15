@@ -105,6 +105,10 @@
                                 return el.name === name;
                             });
 
+                            if(!metricInstance) {
+                              return;
+                            }
+
                             if(value.instances.length !== metricInstance.data.length) {
                                 metricInstance.deleteInvalidInstances(value.instances);
                             }

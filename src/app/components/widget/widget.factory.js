@@ -918,82 +918,199 @@
 
         }
 
+        definitions.push(
+            {
+                name: 'mmv.cost.utilization',
+                title: 'Cost Utilization',
+                directive: 'line-time-series',
+                dataAttrName: 'data',
+                dataModelType: MultipleMetricDataModel,
+                dataModelOptions: {
+                    name: 'mmv.cost.jvm.usage',
+                    // mmv.cost.QueuedThreadPool.dw.utilization
+                    metricDefinitions: {
+                        'heap_usage': 'mmv.cost.jvm.memory.heap.usage',
+                        'thread_pool_usage': 'mmv.cost.QueuedThreadPool.dw.utilization'
+                    }
+                },
+                size: {
+                    width: '50%',
+                    height: '250px'
+                },
+                enableVerticalResize: false,
+                group: 'Cost',
+                attrs: {
+                    forcey: 1,
+                    percentage: true
+                }
+            },
+            {
+                name: 'mmv.cost.jvm.threads',
+                title: 'Cost JVM Threads',
+                directive: 'line-time-series',
+                dataAttrName: 'data',
+                dataModelType: MultipleMetricDataModel,
+                dataModelOptions: {
+                    name: 'mmv.cost.jvm.threads',
+                    metricDefinitions: {
+                        'count': 'mmv.cost.jvm.threads.count',
+                        'runnable_count': 'mmv.cost.jvm.threads.runnable.count',
+                        'blocked_count': 'mmv.cost.jvm.threads.blocked.count',
+                        'waiting_count': 'mmv.cost.jvm.threads.waiting.count',
+                        'timed_waiting_count': 'mmv.cost.jvm.threads.timed_waiting.count'
+                    }
+                },
+                size: {
+                    width: '50%',
+                    height: '250px'
+                },
+                enableVerticalResize: true,
+                group: 'Cost',
+                attrs: {
+                    percentage: false,
+                    integer: true
+                }
+            }, {
+                name: 'mmv.cost.jvm.memory_used',
+                title: 'Cost JVM Memory Utilization (Used)',
+                directive: 'line-time-series',
+                dataAttrName: 'data',
+                dataModelType: MultipleMetricDataModel,
+                dataModelOptions: {
+                    name: 'mmv.cost.jvm.memory',
+                    metricDefinitions: {
+                        'heap_used': 'mmv.cost.jvm.memory.heap.used',
+                        'heap_init': 'mmv.cost.jvm.memory.heap.init',
+                        'heap_committed': 'mmv.cost.jvm.memory.heap.committed'
+                    }
+                },
+                size: {
+                    width: '50%',
+                    height: '250px'
+                },
+                enableVerticalResize: true,
+                group: 'Cost',
+                attrs: {
+                    percentage: false,
+                    integer: true
+                }
+            },
+            {
+                name: 'mmv.cost.JobQueue',
+                title: 'Cost Job Queue',
+                directive: 'line-time-series',
+                dataAttrName: 'data',
+                dataModelType: MultipleMetricDataModel,
+                dataModelOptions: {
+                    name: 'mmv.cost.JobQueue',
+                    metricDefinitions: {
+                        'pending': 'mmv.cost.JobQueue.pendingJobs.size',
+                        'failed': 'mmv.cost.JobQueue.failedJobs.size',
+                        'active': 'mmv.cost.JobQueue.activeJobs.size'
+                    }
+                },
+                size: {
+                    width: '50%',
+                    height: '250px'
+                },
+                enableVerticalResize: true,
+                group: 'Cost',
+                attrs: {
+                    percentage: false,
+                    integer: true
+                }
+            }
+            // {
+            //   name: 'mmv.cost.L2Cache',
+            //   title: 'Cost L2Cache Size',
+            //   directive: 'line-time-series',
+            //   dataAttrName: 'data',
+            //   dataModelType: MultipleMetricDataModel,
+            //   dataModelOptions: {
+            //     name: 'mmv.cost.L2Cache',
+            //     metricDefinitions: {
+            //       'entity_cache.size': 'mmv.cost.L2Cache.entity_cache.size',
+            //       'entity_cache.in_memory_count': 'mmv.cost.L2Cache.entity_cache.in_memory_count',
+            //       'collection_cache.size': 'mmv.cost.L2Cache.collection_cache.size',
+            //       'ollection_cache.in_memory_count': 'mmv.cost.L2Cache.collection_cache.in_memory_count',
+            //       'UpdateTimestampsCache.size': 'mmv.cost.L2Cache.UpdateTimestampsCache.size',
+            //       'UpdateTimestampsCache.in_memory_count': 'mmv.cost.L2Cache.UpdateTimestampsCache.in_memory_count'
+            //     }
+            //   },
+            //   size: {
+            //     width: '50%',
+            //     height: '250px'
+            //   },
+            //   enableVerticalResize: true,
+            //   group: 'Cost',
+            //   attrs: {
+            //     percentage: false,
+            //     integer: true
+            //   }
+            // }
+        );
+
         return definitions;
     }
 
     var defaultWidgets = [
         {
-            name: 'kernel.all.cpu',
+            name: 'mmv.cost.utilization',
             size: {
                 width: '50%'
             }
-        }, {
+        },
+        {
+            name: 'mmv.cost.jvm.threads',
+            size: {
+                width: '50%'
+            }
+        },
+        {
+            name: 'mmv.cost.jvm.memory_used',
+            size: {
+                width: '50%'
+            }
+        },
+
+        {
+            name: 'mmv.cost.JobQueue',
+            size: {
+                width: '50%'
+            }
+        },
+        {
             name: 'kernel.percpu.cpu',
             size: {
                 width: '50%'
             }
-        }, {
-            name: 'kernel.all.runnable',
-            size: {
-                width: '50%'
-            }
-        }, {
+        },
+        {
             name: 'kernel.all.load',
             size: {
                 width: '50%'
             }
-        }, {
-            name: 'network.interface.bytes',
-            size: {
-                width: '50%'
-            }
-        }, {
-            name: 'network.tcpconn',
-            size: {
-                width: '50%'
-            }
-        }, {
-            name: 'network.interface.packets',
-            size: {
-                width: '50%'
-            }
-        }, {
-            name: 'network.tcp.retrans',
-            size: {
-                width: '50%'
-            }
-        }, {
+        },
+        {
             name: 'mem',
             size: {
                 width: '50%'
             }
-        }, {
-            name: 'mem.vmstat.pgfault',
+        },
+        {
+            name: 'network.interface.bytes',
             size: {
                 width: '50%'
             }
-        }, {
-            name: 'kernel.all.pswitch',
+        },
+        {
+            name: 'network.tcpconn',
             size: {
                 width: '50%'
             }
-        }, {
-            name: 'disk.iops',
-            size: {
-                width: '50%'
-            }
-        }, {
-            name: 'disk.bytes',
-            size: {
-                width: '50%'
-            }
-        }, {
+        },
+        {
             name: 'disk.dev.avactive',
-            size: {
-                width: '50%'
-            }
-        }, {
-            name: 'disk.dev.latency',
             size: {
                 width: '50%'
             }
